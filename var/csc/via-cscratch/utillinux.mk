@@ -16,7 +16,7 @@
 #SC_VRM		=	util-linux-2.20 <<< NORD 6 fallback
 #SC_VRM		=	util-linux-ng-2.17
 
-SC_APN		=	util-linux
+SC_APN		=	utillinux
 #SC_APV		=	2.20
 #SC_APV		=	2.26
 #SC_APV		=	2.27
@@ -32,8 +32,8 @@ SC_ARC		=	tar.xz
 #SC_VRM		=	util-linux-2.27.1
 #SC_VRM		=	util-linux-2.28.2
 #SC_VRM		=	util-linux-2.29.2
-#SC_VRM         =       util-linux-2.38.1
-SC_VRM          =       util-linux-2.40.1
+SC_VRM          =       util-linux-2.38.1
+#SC_VRM         =       util-linux-2.40.1
 
 #SC_URL		=	\
 # http://www.kernel.org/pub/linux/utils/util-linux/$(SC_VRM).lsm \
@@ -62,12 +62,22 @@ SC_URL		=	\
  https://www.kernel.org/pub/linux/utils/$(SC_APN)/v$(SC_APV)/$(SC_VRM).$(SC_ARC) \
  https://www.kernel.org/pub/linux/utils/$(SC_APN)/v$(SC_APV)/$(SC_VRM).tar.sign
 
+#SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sign
+SC_SOURCE_VERIFY = xzcat < arc/$(SC_APN)/$(SC_SOURCE).$(SC_ARC) \
+                              | gpg --verify arc/$(SC_APN)/$(SC_SOURCE).tar.sign -
+#gpg --keyserver hkp://pool.sks-keyservers.net/ --recv-keys 0x0xe4b71d5eec39c284
+# NOTE: This verification is a little more difficult because they signed
+# the tarball instead of the *compressed* tarball. That means we have to
+# decompress ahead of verifying which is extra work because we want to
+# retain the original compressed download as-is.
+
 #SC_FETCH	=	$(SC_FETCH_BZ)
 
 #SC_SOURCE	=	
 
 SC_CONFIG	=	./configure \
 				--without-python \
+				--disable-liblastlog2 \
 				--enable-static --disable-shared \
 				--disable-nls
 #--without-inotify

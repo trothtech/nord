@@ -22,8 +22,8 @@ SC_VRM		=	$(SC_APN)-$(SC_APV)
 #SC_URL		=	\
 #	  http://superb-dca3.dl.sourceforge.net/$(SC_APN)/$(SC_VRM).$(SC_ARC)
 
-#SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sig
-# gpg --keyserver hkp://pgp.mit.edu/ --recv-keys 0xnnnnnnnnnnnnnnnn
+SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sig
+# gpg --keyserver hkp://pgp.mit.edu/ --recv-keys 0xe4b29c8d64885307
 
 #SC_FETCH	=	cscgetsf.sh $(SC_APN)/$(SC_VRM).$(SC_ARC)
 

@@ -6,6 +6,7 @@
 #
 #
 
+SC_APN          =       e2fsprogs
 #SC_VRM		=	e2fsprogs-1.33
 #SC_VRM		=	e2fsprogs-1.36
 #SC_VRM		=	e2fsprogs-1.41.0
@@ -24,6 +25,15 @@ SC_ARC          =       tar.xz
 SC_URL		=	\
    http://iweb.dl.sourceforge.net/sourceforge/e2fsprogs/$(SC_VRM).$(SC_ARC)
 #http://prdownloads.sourceforge.net/e2fsprogs/$(SC_VRM).tar.gz
+
+#SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sign
+SC_SOURCE_VERIFY = xzcat < arc/$(SC_APN)/$(SC_SOURCE).$(SC_ARC) \
+                              | gpg --verify arc/$(SC_APN)/$(SC_SOURCE).tar.sign -
+#gpg --keyserver hkp://pool.sks-keyservers.net/ --recv-keys 0x
+# NOTE: This verification is a little more difficult because they signed
+# the tarball instead of the *compressed* tarball. That means we have to
+# decompress ahead of verifying which is extra work because we want to
+# retain the original compressed download as-is.
 
 #SC_FETCH	=	
 #SC_SOURCE	=	

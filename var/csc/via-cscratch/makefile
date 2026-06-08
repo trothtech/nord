@@ -214,7 +214,7 @@ gnu-ins:	autoconf.ins automake.ins \
 
 cycle:
 		@mkdir -p cycle
-		sudo cp -p *.ins cycle/.
+		cp -p *.ins cycle/.
 		sh -c ' cd cycle ; exec ls -dt *.ins ' \
 			| tail -1 | awk -F. '{print $$1}' > cycle.tmp
 		@echo "	rm -f `cat cycle.tmp`.ins `cat cycle.tmp`.exe \
@@ -230,8 +230,6 @@ cycle:
 		echo "	$(MAKE) `cat cycle.tmp`.ins"
 		sudo $(MAKE) `cat cycle.tmp`.ins
 		@rm cycle.tmp
-
-
 
 VRMLIST:
 	@grep '^SC_VRM' *.mk | awk -F'=' '{print $$2}'

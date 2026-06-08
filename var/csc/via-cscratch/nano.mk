@@ -18,6 +18,9 @@ SC_URL		=	\
 	http://ftp.gnu.org/pub/gnu/nano/$(SC_VRM).$(SC_ARC) \
 	http://ftp.gnu.org/pub/gnu/nano/$(SC_VRM).$(SC_ARC).sig
 
+SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sig
+# gpg --keyserver hkp://pgp.mit.edu/ --recv-keys 0x
+
 #SC_FETCH	=	
 #SC_SOURCE	=	
 SC_CONFIG	=	./configure --prefix=/usr --disable-nls

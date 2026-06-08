@@ -20,7 +20,8 @@ SC_SOURCE_VERIFY = gpg --verify arc/$(SC_APN)/$(SC_VRM).$(SC_ARC).sig
 
 #SC_FETCH	=	
 #SC_SOURCE	=	
-SC_CONFIG	=	./configure --prefix=/usr --disable-nls
+SC_CONFIG	=	./configure --prefix=/usr
+#configure: WARNING: unrecognized options: --disable-nls
 #SC_BUILD	=	
 #SC_INSTALL	=	
 SC_FIXUP	=	strip /usr/bin/which
